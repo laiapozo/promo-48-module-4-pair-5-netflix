@@ -76,4 +76,36 @@ UPDATE actors SET image='https://upload.wikimedia.org/wikipedia/commons/thumb/e/
 
 UPDATE actors SET image='https://upload.wikimedia.org/wikipedia/commons/4/4f/John_Travolta_Cannes_2018.jpg' WHERE idActor=3;
 
-DELETE FROM users;
+CREATE TABLE movies_has_users (
+	fkMovie INT NOT NULL,
+    fkUser INT NOT NULL,
+    score FLOAT
+);
+
+INSERT INTO movies_has_users (fkUser, fkMovie, score)
+VALUES
+	(1, 1, 7.8),
+    (1, 2, 6.6),
+    (2, 2, 8);
+
+SELECT movies.title, users.name, movies_has_users.score
+FROM movies, users, movies_has_users
+WHERE movies.idMovie = movies_has_users.fkMovie AND movies_has_users.fkUser = users.idUser;
+
+CREATE TABLE movies_has_actors (
+	fkActor INT NOT NULL,
+    fkMovie INT NOT NULL
+);
+
+INSERT INTO movies_has_actors (fkActor, fkMovie)
+VALUES
+	(1, 3),
+    (2, 2),
+    (3, 1);
+    
+SELECT actors.name, actors.lastname, movies.title
+FROM actors
+INNER JOIN movies_has_actors
+ON actors.idActor = movies_has_actors.fkActor
+INNER JOIN movies
+ON movies.idMovie = movies_has_actors.fkMovie;
