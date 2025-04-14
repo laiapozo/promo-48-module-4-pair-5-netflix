@@ -109,3 +109,15 @@ INNER JOIN movies_has_actors
 ON actors.idActor = movies_has_actors.fkActor
 INNER JOIN movies
 ON movies.idMovie = movies_has_actors.fkMovie;
+
+USE defaultdb;
+
+SELECT users.name, COUNT(movies_has_users.fkMovie) AS pelis_count
+FROM users
+INNER JOIN movies_has_users ON movies_has_users.fkUser = users.idUser
+GROUP BY users.name;
+
+SELECT users.name, MAX(movies_has_users.fkMovie) AS total_pelis
+FROM users
+INNER JOIN movies_has_users ON movies_has_users.fkUser = users.idUser
+GROUP BY users.name;
