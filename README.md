@@ -25,11 +25,11 @@ Por favor marca a continuación los ejercicios que hayáis terminado:
 
 **4.4 Queries avanzadas de SQL:**
 
-- [ ] 1. Queries avanzadas
-- [ ] 2. Descarga el proyecto
+- [x] 1. Queries avanzadas
+- [x] 2. Descarga el proyecto
 - [ ] 3. Arranca el front end
 - [ ] 4. Prueba el front end
-- [ ] 5. Entiende el código de la carpeta web
+- [x] 5. Entiende el código de la carpeta web
 
 **4.5 NodeJS y ExpressJS:**
 
