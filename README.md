@@ -27,16 +27,16 @@ Por favor marca a continuación los ejercicios que hayáis terminado:
 
 - [x] 1. Queries avanzadas
 - [x] 2. Descarga el proyecto
-- [ ] 3. Arranca el front end
-- [ ] 4. Prueba el front end
+- [x] 3. Arranca el front end
+- [x] 4. Prueba el front end
 - [x] 5. Entiende el código de la carpeta web
 
 **4.5 NodeJS y ExpressJS:**
 
-- [ ] 1. Arranca el backend
-- [ ] 2. Arranca el frontend
-- [ ] 3. Prueba el proyecto
-- [ ] 4. Entiende el código del proyecto
+- [x] 1. Arranca el backend
+- [x] 2. Arranca el frontend
+- [x] 3. Prueba el proyecto
+- [x] 4. Entiende el código del proyecto
 
 **4.6 Endpoints:**
 
