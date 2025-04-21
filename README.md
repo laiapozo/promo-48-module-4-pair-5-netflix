@@ -45,7 +45,7 @@ Por favor marca a continuación los ejercicios que hayáis terminado:
 
 **4.7 ExpressJS con MySQL:**
 
-- [ ] 1. Conectar con la base de datos y mostrar todas las películas
+- [x] 1. Conectar con la base de datos y mostrar todas las películas
 - [ ] 2. Servidor de estáticos para React
 - [ ] 3. Servidor de estáticos para las fotos
 

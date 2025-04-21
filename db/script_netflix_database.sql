@@ -121,3 +121,9 @@ SELECT users.name, MAX(movies_has_users.fkMovie) AS total_pelis
 FROM users
 INNER JOIN movies_has_users ON movies_has_users.fkUser = users.idUser
 GROUP BY users.name;
+
+USE defaultdb;
+INSERT INTO movies (title, genre, image, category, year)
+VALUES ('Titanic', 'drama', 'https://pics.filmaffinity.com/titanic-160344363-mmed.jpg', 'top 10', 1997);
+
+UPDATE movies SET image='https://pics.filmaffinity.com/Titanic-321994924-mmed.jpg' WHERE idMovie=4;
