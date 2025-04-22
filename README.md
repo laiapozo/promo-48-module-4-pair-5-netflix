@@ -51,8 +51,8 @@ Por favor marca a continuación los ejercicios que hayáis terminado:
 
 **4.8 Peticiones con parámetros:**
 
-- [ ] 1. Filtrar por género
-- [ ] 2. Ordenar por nombre
+- [x] 1. Filtrar por género
+- [x] 2. Ordenar por nombre
 
 **4.9 Motores de plantillas:**
 

@@ -9,8 +9,7 @@ server.use(express.json());
 
 async function getDBConnection() {
   const connection = await mysql.createConnection({
-    database: "defaultdb",
-    port: "10742",
+  
   });
 
   connection.connect();
@@ -26,10 +25,21 @@ server.listen(serverPort, () => {
 
 server.get("/movies", async (req, res) => {
   const connection = await getDBConnection();
-  const query = "SELECT * FROM movies";
-  const [moviesResult] = await connection.query(query);
-  console.log(moviesResult);
+  let query = "SELECT * FROM movies";
+  const { genre } = req.query;
+  const { sort } = req.query;
 
+  if (sort === "asc") {
+    query += " ORDER BY title ASC";
+  } else {
+    query += " ORDER BY title DESC";
+  }
+
+  if (genre) {
+    query += " WHERE genre = ?";
+  }
+
+  const [moviesResult] = await connection.query(query, genre ? [genre] : [], sort);
   connection.end();
 
   res.status(200).json({
