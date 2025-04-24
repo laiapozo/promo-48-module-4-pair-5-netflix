@@ -11,9 +11,13 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
+require("dotenv").config();
+
 async function getDBConnection() {
   const connection = await mysql.createConnection({
-    
+    host: "mysql-37727e58-toro-17c0.b.aivencloud.com",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     database: "defaultdb",
     port: "10742",
   });
@@ -24,7 +28,7 @@ async function getDBConnection() {
 }
 
 // init express aplication
-const serverPort = 4000;
+const serverPort = process.env.PORT;
 server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
