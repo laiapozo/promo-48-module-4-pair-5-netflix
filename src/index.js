@@ -80,18 +80,17 @@ server.post("/user/register", async (req, res) => {
 });
 
 // Endpoint login
-server.post("user/login", async (req, res) => {
+server.post("/user/login", async (req, res) => {
   const connection = await getDBConnection();
 
   const { email, password } = req.body;
 
-  const emailQuery = "SELECT FROM users WHERE email = ?";
+  const emailQuery = "SELECT * FROM users WHERE email = ?";
   const [resultUser] = await connection.query(emailQuery, [email]);
-
   if (resultUser.length > 0) {
     const isSamePassword = await bcrypt.compare(
       password,
-      resultUser[0].hashed_password
+      resultUser[0].password
     );
     if (isSamePassword === true) {
       // sign recibe 3 parámetros: info usuario que quiero guardar, clave secreta, caducidad token
@@ -117,3 +116,15 @@ server.post("user/login", async (req, res) => {
     });
   }
 });
+
+server.get("/user/profile", async (req, res) => {
+  const id = req.headers.idUser;
+  const connection = await getDBConnection();
+  const sqlQuery = "SELECT * FROM users WHERE idUser = ?";
+  const [resultUser] = await connection.query(sqlQuery, [id])
+  connection.end()
+  res.status(200).json({
+    success: true,
+    message: resultUser[0]
+  })
+})
