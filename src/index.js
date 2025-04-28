@@ -101,7 +101,7 @@ server.post("/user/login", async (req, res) => {
       const token = jwt.sign(infoToken, SECRET_KEY_TOKEN, { expiresIn: "1h" });
       res.status(200).json({
         success: true,
-        token: token,
+        userId: resultUser[0].idUser,
       });
     } else {
       res.status(401).json({
@@ -121,10 +121,33 @@ server.get("/user/profile", async (req, res) => {
   const id = req.headers.idUser;
   const connection = await getDBConnection();
   const sqlQuery = "SELECT * FROM users WHERE idUser = ?";
-  const [resultUser] = await connection.query(sqlQuery, [id])
-  connection.end()
+  const [resultUser] = await connection.query(sqlQuery, [id]);
+  connection.end();
   res.status(200).json({
     success: true,
-    message: resultUser[0]
-  })
-})
+    message: resultUser[0],
+  });
+});
+
+server.post("/user/profile", async (req, res) => {
+  const connection = await getDBConnection();
+
+  const id = req.headers.idUser;
+  const { name, email, password } = req.body;
+
+  const sqlQuery =
+    "UPDATE users SET name = ?, password = ?, email = ? WHERE idUser = ?";
+  const [result] = await connection.query(sqlQuery, [
+    name,
+    password,
+    email,
+    id,
+  ]);
+
+  connection.end();
+
+  res.status(200).json({
+    success: true,
+    message: `User modified. ID: ${result}`,
+  });
+});
